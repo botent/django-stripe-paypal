@@ -16,7 +16,7 @@ DSP is a Django app to accept payments (one-time) from Paypal and Stripe.
 
 2. Include the payment URLconf in your project ```urls.py ```like this::
 
-    ```path('payment/', include('payment.urls')),```
+    ```path('payment/', include('payment.urls')),``` and make migrations.
 3. In ```settings.py``` add the following -
 	 
 	```
