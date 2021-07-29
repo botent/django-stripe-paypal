@@ -1,0 +1,4 @@
+django
+stripe
+paypalhttp
+paypal-checkout-serversdk
