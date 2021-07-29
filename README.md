@@ -16,7 +16,7 @@ DSP is a Django app to accept payments (one-time) from Paypal and Stripe.
 
 2. Include the payment URLconf in your project ```urls.py ```like this::
 
-    ```path('payment/', include('payment.urls')),``` and make migrations.
+    ```path('payment/', include('payment.urls')),```
 3. In ```settings.py``` add the following -
 	 
 	```
@@ -36,12 +36,13 @@ DSP is a Django app to accept payments (one-time) from Paypal and Stripe.
 	PAYPAL_AMOUNT  =  10
 	PAYPAL_CURRENCY_CODE  =  'gbp'
 	  
-	SUCCESS_TEMPLATE_PATH  =  'success.html'
+	SUCCESS_TEMPLATE_PATH  =  'template_success.html' or 'appname/template_success.html'
 
-	FAIL_TEMPLATE_PATH  =  'fail.html'
+	FAIL_TEMPLATE_PATH  =  'template_fail.html' or 'appname/template_fail.html'
 	```
 	
-4. While using the ```checkout``` views, make sure the URL has string argument as shown on the template file using (was made to ease the process and is an integral part) -
+4. Migrate the DB (i.e. ``python manage.py migrate`` )
+5. While using the ```checkout``` views, make sure the URL has string argument as shown on the template file using (was made to ease the process and is an integral part) -
 
 	```
 	<div>
@@ -58,6 +59,26 @@ DSP is a Django app to accept payments (one-time) from Paypal and Stripe.
 
 The  **checkout** and **success** views use user object to store records, so ensure that the user is signed in before processing the checkout (```LoginRequiredMixin``` is in place, but consider this a friendly reminder) - make sure your ```login_url``` is configured properly in ```settings.py```
 
+## Templates Guide (No offence, pros)
+ ```
+	Project
+	|
+	|
+	|___App1
+	    |
+	    |
+	    |___Templates
+	        |
+	        |
+	        |___App1
+	            |___template1.html
+```
+
+If you follow the above directory structure, in ```settings.py``` under ```SUCCESS_TEMPLATE_PATH``` and ```FAIL_TEMPLATE_PATH``` input as - ```App1/template1.html```.
+
+For the users with ```templates``` in root, proceed as usual! 
+
 ## Live/Production Guide
 
 **PAYPAL_SANDBOX** defaults to ```True``` and in live/production, change it to ```False``` and change **STRIPE_PRODUCTION** to ```True```
+
