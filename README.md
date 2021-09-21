@@ -1,6 +1,5 @@
 # Django-Stripe-PayPal (DSP)
-DSP is a Django app to accept payments (one-time) from Paypal and Stripe.
-(Will soon add subscriptions and payouts)
+DSP is a Django app to accept payments (one-time) from Paypal and (one-time and subscriptions) Stripe.
 
 
 
